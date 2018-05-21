@@ -63,79 +63,16 @@
       <div id="heading">
         <h3 id="title">Minesweeper</h3>
       </div>
+
       <div id="board">
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
+        {% for row in tile_grid %}
+          {% for tile in row %}
+            <div id="tile"></div>
+          {% endfor %}
           <div id="clear"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="clear"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="clear"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="clear"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="clear"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="clear"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="clear"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="tile"></div>
-          <div id="clear"></div>
+        {% endfor %}
+
+
       </div>
     </div>
     <div id="stats">
