@@ -9,7 +9,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
       <style>
       body {
-        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        margin: 20px;
       }
       #game {
         background-color: rgba(0, 255, 0, 0.1);
@@ -33,9 +35,28 @@
       }
       #row {
       }
+      #stats {
+        background-color: rgba(0, 255, 0, 0.1);
+        border: 2px solid black;
+        display: inline-block;
+        width: 30%;
+      }
+      #instructions {
+        background-color: rgba(0, 255, 0, 0.1);
+        border: 2px solid black;
+        display: inline-block;
+        width: 30%;
+      }
     </style>
   </head>
   <body>
+    <div id="instructions">
+      <h4>To Play:</h4>
+      <p>Click to reveal a tile</p>
+      <p>Right click to place or remove a flag</p>
+      <h4>To Win:</h4>
+      <p>Reveal all non-mine tiles</p>
+    </div>
     <div id="game">
       <div id="heading">
         <h3 id="title">Minesweeper</h3>
@@ -123,6 +144,11 @@
         </div>
       </div>
     </div>
-    
+    <div id="stats">
+      <h4>Timer:</h4>
+      <p></p>
+      <h4>Mines Remaining:</h4>
+      <p></p>
+    </div>
   </body>
 </html>
