@@ -84,6 +84,7 @@ def createNewZeroMatrix(matrix):
 
 def createNewBlankMatrix(matrix):
     """ generates '?' matrix, this is the matrix visible to the user """
+    # TODO: Change this to appropriate visual
     return [['?' for x in y] for y in matrix]
 
 
@@ -96,6 +97,7 @@ def isNumber(input):
 
 def getNextMove(height, width, numberMatrix):
     """ retrieves user input for tile selection """
+    # TODO: change this from raw input to clicks
     x = isNumber(raw_input('enter a row number 1-{}: '.format(width)))
     y = isNumber(raw_input('enter a column number 1-{}: '.format(height)))
     if x is not False and y is not False and isValidTile(numberMatrix, x, y):
@@ -105,6 +107,8 @@ def getNextMove(height, width, numberMatrix):
 
 def placeFlag():
     """ retrieves user input for flag placement """
+    # TODO: change this from raw input to right click
+    # TODO: add unclick toggle
     flag = raw_input('place a flag?').lower()
     if flag == 'yes' or flag == 'y':
         return True
