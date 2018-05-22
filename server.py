@@ -31,6 +31,23 @@ def homepage():
     return render_template('base.html', tile_grid=tile_grid)
 
 
+@app.route('/reveal', methods=["POST"])
+def revealTile():
+    """ Reveal the selected tile. """
+    # reveal the tile and neighbors
+    # check to make sure game stil going
+
+    return redirect('/')
+
+
+@app.route('/flag', methods=["POST"])
+def flagTile():
+    """ Reveal the selected tile. """
+    # Place flag, unless already flagged then unflag
+
+    return redirect('/')
+
+
 if __name__ == "__main__":
     app.jinja_env.auto_reload = app.debug  # make sure templates, etc. are not cached in debug mode
 
