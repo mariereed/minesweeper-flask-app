@@ -129,7 +129,7 @@ def revealClick(height, width, numberMatrix, blankMatrix, flagCount):
             blankMatrix[x][y] = numberMatrix[x][y]
         return flagCount, True
     else:
-        print 'Please provide a valid number!'
+        # request a valid number 'Please provide a valid number!'
         return revealClick(height, width, numberMatrix, blankMatrix, flagCount)
 
 
@@ -161,21 +161,6 @@ def revealEndBoard(numberMatrix, currentBoard):
     return copyCurrentBoard
 
 
-def printInstructions():
-    print
-    print 'Welcome to Minesweeper!'
-    print
-    print 'To Play:'
-    print 'When prompted provide a row and column number for the tile that you would like to select.'
-    print 'You must select a number that fits within the range of the array.'
-    print "When asked if you want to place a flag, responding 'y' or 'yes' will place a flag."
-    print 'Any other keystroke will instead select the tile, revealing its value.'
-    print
-    print 'To Win:'
-    print 'You must place flags on all the mines and reveal all other tiles.'
-    print
-
-
 def playGame(height, width, mineCount):
     """ Game function sets up matrices, allows tile selection and flagging,
     determines game over, suggests playing again """
@@ -187,20 +172,19 @@ def playGame(height, width, mineCount):
     gameRunning   = True
     flagCount     = 0
 
-    printInstructions()
     while gameRunning:
         flagCount, wasRevealed = revealClick(height, width, numberMatrix, blankMatrix, flagCount)
         if wasRevealed:
-            print blankMatrix
-            print 'Mines Flagged: {} out of {}'.format(flagCount, mineCount)
+            # update the board
+            # update the flag count
             if mineCount == flagCount:
                 if revealWinningBoard(numberMatrix) == blankMatrix:
                     gameRunning = False
-                    print 'You Won!'
+                    # The game is won
         else:
             gameRunning = False
-            print 'Game Over, you hit a mine!'
-            print revealEndBoard(numberMatrix, blankMatrix)
+            # The game is over because a mine is hit
+            # Reveal the end board: revealEndBoard(numberMatrix, blankMatrix)
 
     doOver = raw_input('Play again? ').lower()
     if doOver == 'yes' or doOver == 'y':
