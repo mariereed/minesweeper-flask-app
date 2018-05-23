@@ -28,10 +28,10 @@ def isValidTile(matrix, x, y):
     return False
 
 
-def changeIfValid(newMatrix, x, y):
+def changeIfValid(matrix, x, y):
     """ validates that x and y are within grid and not a bomb """
-    if isValidTile(newMatrix, x, y) and newMatrix[x][y] != '!':
-        newMatrix[x][y] += 1
+    if isValidTile(matrix, x, y) and matrix[x][y] != '!':
+        matrix[x][y] += 1
         return True
     return False
 

@@ -26,13 +26,13 @@
       #title {
         text-align: center;
       }
-      #tile {
+      .tile {
         border: 1px inset #666;
         height: 25px;
         width: 25px;
         float: left;
       }
-      #clear {
+      .clear {
         clear: both;
       }
       #row {
@@ -52,6 +52,7 @@
     </style>
   </head>
   <body>
+    <script src="/static/js/click.js"></script>
     <div id="instructions">
       <h4>To Play:</h4>
       <p>Click to reveal a tile</p>
@@ -67,9 +68,9 @@
       <div id="board">
         {% for row in tile_grid %}
           {% for tile in row %}
-            <div id="tile"></div>
+            <div class="tile"></div>
           {% endfor %}
-          <div id="clear"></div>
+          <div class="clear"></div>
         {% endfor %}
 
 
