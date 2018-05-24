@@ -11,9 +11,15 @@ $('document').ready(function() {
     //     }
     // }
     function revealTile(results) {
+        if (results.confirm === true) {
+            console.log('Success Reveal');
+        }
     }
 
     function flagTile(results) {
+        if (results.confirm === true) {
+            console.log('Success Flag');
+        }
     }
     // Listen for clicks, route appropriately.
     $('.tile').mousedown(function(event) {

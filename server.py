@@ -36,16 +36,16 @@ def revealTile():
     """ Reveal the selected tile. """
     # reveal the tile and neighbors
     # check to make sure game stil going
-
-    return redirect('/')
+    print 'made it into reveal'
+    return jsonify({'confirm': True})
 
 
 @app.route('/flag', methods=["POST"])
 def flagTile():
     """ Reveal the selected tile. """
     # Place flag, unless already flagged then unflag
-
-    return redirect('/')
+    print 'made it into flag'
+    return jsonify({'confirm': True})
 
 
 if __name__ == "__main__":
