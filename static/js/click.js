@@ -10,15 +10,20 @@ $('document').ready(function() {
     //         theLikeButton.attr('style', "color:red");
     //     }
     // }
+    function revealTile(results) {
+    }
 
+    function flagTile(results) {
+    }
     // Listen for clicks, route appropriately.
     $('.tile').mousedown(function(event) {
         switch (event.which) {
             case 1:
                 console.log('left click');
+                console.log(this.id);
                 // Left Mouse button pressed
                 // Reveal the tile
-                // $.post('/reveal', {'x': this.x, 'y': this.y}, revealTile);
+                $.post('/reveal', {'coordinates': this.id}, revealTile);
                 break;
             case 2:
                 console.log('middle click');
@@ -27,9 +32,10 @@ $('document').ready(function() {
                 break;
             case 3:
                 console.log('right click');
+                console.log(this.id);
                 // Right Mouse button pressed
                 // Flag/Unflag the tile
-                // $.post('/flag', {'x': this.x, 'y': this.y}, flagTile);
+                $.post('/flag', {'coordinates': this.id}, flagTile);
                 break;
             default:
                 console.log('default');
