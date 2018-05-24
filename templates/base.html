@@ -66,8 +66,8 @@
       </div>
 
       <div id="board">
-        {% for row in tile_grid %}
-          {% for tile in row %}
+        {% for row in range(tile_grid|length) %}
+          {% for column in range(tile_grid[row]|length) %}
             <div class="tile"></div>
           {% endfor %}
           <div class="clear"></div>
