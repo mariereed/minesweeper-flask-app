@@ -194,4 +194,4 @@ def playGame(height, width, mineCount):
     if doOver == 'yes' or doOver == 'y':
         playGame(height, width, mineCount)
 
-playGame(4, 4, 5)
+

@@ -1,15 +1,6 @@
 "use strict";
 
 $('document').ready(function() {
-
-    // EXAMPLE for how to handle revealTile/flagTile
-
-    // function changeButton(results) {
-    //     if (results.confirm === true) {
-    //         let theLikeButton = $('#' + String(results.id));
-    //         theLikeButton.attr('style', "color:red");
-    //     }
-    // }
     function revealTile(results) {
         if (results.confirm === true) {
             console.log('Success Reveal');

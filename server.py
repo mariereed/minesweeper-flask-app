@@ -3,6 +3,7 @@ from jinja2 import StrictUndefined
 from flask import Flask, render_template, redirect, request, flash, session, g, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
 import os
+import minesweeper
 
 
 # -------- Set Up ----------------------------------------------
@@ -19,16 +20,16 @@ app.jinja_env.undefined = StrictUndefined
 @app.route('/')
 def homepage():
     """ Application page."""
-    tile_grid = [[0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0]]
 
-    return render_template('base.html', tile_grid=tile_grid)
+    height    = 8
+    width     = 8
+    mineCount = 10
+
+    preMatrix     = minesweeper.createBeginnerTrueFalseMatrix(height, width, mineCount)
+    numberMatrix  = minesweeper.numberFill(preMatrix)
+    blankMatrix   = minesweeper.createNewBlankMatrix(preMatrix)
+
+    return render_template('base.html', tile_grid=preMatrix)
 
 
 @app.route('/reveal', methods=["POST"])
