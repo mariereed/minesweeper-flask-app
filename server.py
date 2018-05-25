@@ -25,20 +25,39 @@ def homepage():
     width     = 8
     mineCount = 10
 
-    preMatrix     = minesweeper.createBeginnerTrueFalseMatrix(height, width, mineCount)
-    numberMatrix  = minesweeper.numberFill(preMatrix)
-    blankMatrix   = minesweeper.createNewBlankMatrix(preMatrix)
+    flagCount = 0
 
-    return render_template('base.html', tile_grid=preMatrix)
+    true_false_matrix      = minesweeper.createBeginnerTrueFalseMatrix(height, width, mineCount)
+    number_and_mine_matrix = minesweeper.numberFill(true_false_matrix)
+    blank_matrix           = minesweeper.createNewBlankMatrix(true_false_matrix)
+
+    print minesweeper.tabulateMatrix(number_and_mine_matrix)
+
+    session['number_and_mine_board'] = number_and_mine_matrix
+    session['current_board'] = blank_matrix
+
+    return render_template('base.html', tile_grid=true_false_matrix)
 
 
 @app.route('/reveal', methods=["POST"])
 def revealTile():
     """ Reveal the selected tile. """
-    # reveal the tile and neighbors
-    # check to make sure game stil going
-    print 'made it into reveal'
-    return jsonify({'confirm': True})
+
+    full_board    = session.get('number_and_mine_board')
+    current_board = session.get('current_board')
+
+    x, y = eval(request.form.get('coordinates'))
+    was_revealed, board = minesweeper.revealClick(x, y, full_board, current_board)
+
+    print minesweeper.tabulateMatrix(board)
+    session['current_board'] = board
+
+    if was_revealed:
+        print 'Revealed a tile'
+        return jsonify({'confirm': True, 'board': board})
+    else:
+        print 'Hit a mine'
+        return jsonify({'confirm': False, 'board': board})
 
 
 @app.route('/flag', methods=["POST"])
