@@ -1,4 +1,5 @@
 import random
+from tabulate import tabulate
 
 
 def createBeginnerTrueFalseMatrix(height, width, mineCount):
@@ -67,11 +68,6 @@ def numberFill(matrix):
                 changeIfValid(newMatrix, i-1, j  )
                 changeIfValid(newMatrix, i-1, j-1)
                 changeIfValid(newMatrix, i-1, j+1)
-                # or...
-                # for (di, dj) in [(-1, -1), (0, -1), (1, -1),
-                #                  (-1,  0),          (1,  0),
-                #                  (-1,  1), (0,  1), (1,  1)]:
-                #    changeIfValid(newMatrix, i+di, j+dj)
 
     # return the matrix with counters and blanks for bombs
     return newMatrix
@@ -87,6 +83,10 @@ def createNewBlankMatrix(matrix):
     # TODO: Change this to appropriate visual
     return [['?' for x in y] for y in matrix]
 
+def tabulateMatrix(matrix):
+    """ formats any matrix into uniform table """
+    return tabulate(matrix, tablefmt="fancy_grid")
+
 
 def isNumber(input):
     try:
@@ -95,46 +95,21 @@ def isNumber(input):
         return False
 
 
-def getNextMove(height, width, numberMatrix):
-    """ retrieves user input for tile selection """
-    # TODO: change this from raw input to clicks
-    x = isNumber(raw_input('enter a row number 1-{}: '.format(width)))
-    y = isNumber(raw_input('enter a column number 1-{}: '.format(height)))
-    if x is not False and y is not False and isValidTile(numberMatrix, x, y):
-        return x, y
-    return False, False
+def revealClick(x, y, numberMatrix, blankMatrix):
+    """ processes the user input to reveal a tile """
 
-
-def placeFlag():
-    """ retrieves user input for flag placement """
-    # TODO: change this from raw input to right click
-    # TODO: add unclick toggle
-    flag = raw_input('place a flag?').lower()
-    if flag == 'yes' or flag == 'y':
-        return True
-    return False
-
-
-def revealClick(height, width, numberMatrix, blankMatrix, flagCount):
-    """ processes the user input to reveal a tile or place a flag """
-    x, y = getNextMove(height, width, numberMatrix)
-
-    if x is not False and y is not False:
-        if placeFlag():
-            blankMatrix[x][y] = 'F'
-            flagCount += 1
-            return flagCount, True
-        elif numberMatrix[x][y] == '!':
-            return flagCount, False
+    if isValidTile(numberMatrix, x, y):
+        if numberMatrix[x][y] == '!':
+            return False, revealEndBoard(numberMatrix, blankMatrix)
         elif numberMatrix[x][y] == 0:
             blankMatrix[x][y] = ' '
             revealNeighbors(numberMatrix, blankMatrix, x, y)
         else:
             blankMatrix[x][y] = numberMatrix[x][y]
-        return flagCount, True
+        return True, blankMatrix
     else:
         # request a valid number 'Please provide a valid number!'
-        return revealClick(height, width, numberMatrix, blankMatrix, flagCount)
+        return False, blankMatrix
 
 
 def revealNeighbors(numberMatrix, blankMatrix, x, y):
@@ -177,7 +152,7 @@ def playGame(height, width, mineCount):
     flagCount     = 0
 
     while gameRunning:
-        flagCount, wasRevealed = revealClick(height, width, numberMatrix, blankMatrix, flagCount)
+        wasRevealed = revealClick(numberMatrix, blankMatrix)
         if wasRevealed:
             # update the board
             # update the flag count
@@ -193,5 +168,3 @@ def playGame(height, width, mineCount):
     doOver = raw_input('Play again? ').lower()
     if doOver == 'yes' or doOver == 'y':
         playGame(height, width, mineCount)
-
-
