@@ -60,9 +60,10 @@ def revealTile():
 @app.route('/flag', methods=["POST"])
 def flagTile():
     """ Reveal the selected tile. """
-    # Place flag, unless already flagged then unflag
-    print 'Flag Route'
-    return jsonify({'confirm': True})
+
+    x, y = eval(request.form.get('coordinates'))
+
+    return jsonify({'confirm': True, 'x': x, 'y': y})
 
 
 if __name__ == "__main__":
