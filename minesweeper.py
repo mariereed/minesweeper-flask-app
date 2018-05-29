@@ -133,13 +133,10 @@ def revealWinningBoard(matrix):
 
 def revealEndBoard(currentBoard, numberMatrix):
     copyCurrentBoard = currentBoard
-    print currentBoard
-    print numberMatrix
     for i in range(len(numberMatrix)):
         for j in range(len(numberMatrix[i])):
             if numberMatrix[i][j] == '!':
                 copyCurrentBoard[i][j] = '*'
-    print copyCurrentBoard
     return copyCurrentBoard
 
 
