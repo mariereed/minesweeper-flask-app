@@ -100,7 +100,7 @@ def revealClick(x, y, numberMatrix, blankMatrix):
 
     if isValidTile(numberMatrix, x, y):
         if numberMatrix[x][y] == '!':
-            return False, revealEndBoard(numberMatrix, blankMatrix)
+            return False, revealEndBoard(blankMatrix, numberMatrix)
         elif numberMatrix[x][y] == 0:
             blankMatrix[x][y] = ' '
             revealNeighbors(numberMatrix, blankMatrix, x, y)
@@ -131,12 +131,15 @@ def revealWinningBoard(matrix):
     return withFlagsBoard
 
 
-def revealEndBoard(numberMatrix, currentBoard):
+def revealEndBoard(currentBoard, numberMatrix):
     copyCurrentBoard = currentBoard
+    print currentBoard
+    print numberMatrix
     for i in range(len(numberMatrix)):
         for j in range(len(numberMatrix[i])):
             if numberMatrix[i][j] == '!':
                 copyCurrentBoard[i][j] = '*'
+    print copyCurrentBoard
     return copyCurrentBoard
 
 
