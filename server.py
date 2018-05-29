@@ -47,13 +47,16 @@ def revealTile():
     current_board = session.get('current_board')
 
     x, y = eval(request.form.get('coordinates'))
+    print x, y
+
     was_revealed, board = minesweeper.revealClick(x, y, full_board, current_board)
 
     print minesweeper.tabulateMatrix(board)
     session['current_board'] = board
+    print minesweeper.tabulateMatrix(session.get('current_board'))
 
     if was_revealed:
-        print 'Revealed a tile'
+        print 'Revealing a tile'
         return jsonify({'confirm': True, 'board': board})
     else:
         print 'Hit a mine'
@@ -64,7 +67,7 @@ def revealTile():
 def flagTile():
     """ Reveal the selected tile. """
     # Place flag, unless already flagged then unflag
-    print 'made it into flag'
+    print 'Flag Route'
     return jsonify({'confirm': True})
 
 

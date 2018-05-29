@@ -3,10 +3,11 @@
 $('document').ready(function() {
     function revealTile(results) {
         if (results.confirm === true) {
-            console.log('Success Reveal');
+            console.log('In Reveal Tile Function (True)');
 
             let height = results.board.length;
             let width  = results.board[0].length;
+
 
             for (let i = 0; i < width; i++) {
                 for (let j = 0; j < height; j++) {
@@ -14,7 +15,7 @@ $('document').ready(function() {
                         // fill in value for that tile
                         let theTile = document.getElementById("("+ i +", " + j + ")");
                         if (theTile.hasChildNodes()) {
-                            break;
+                            continue;
                         }
                         let content = document.createTextNode(results.board[i][j]);
                         theTile.appendChild(content);
@@ -24,6 +25,7 @@ $('document').ready(function() {
             }
         }
         else {
+            console.log('In Reveal Tile Function (False)');
             // reveal mines with current board
             // game over
         }
@@ -31,7 +33,7 @@ $('document').ready(function() {
 
     function flagTile(results) {
         if (results.confirm === true) {
-            console.log('Success Flag');
+            console.log('In Flag Tile Function');
         }
     }
     // Listen for clicks, route appropriately.
