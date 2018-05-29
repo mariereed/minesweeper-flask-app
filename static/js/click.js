@@ -8,26 +8,20 @@ $('document').ready(function() {
             let height = results.board.length;
             let width  = results.board[0].length;
 
-            let theBoard = document.getElementById("board");
-
             for (let i = 0; i < width; i++) {
                 for (let j = 0; j < height; j++) {
                     if (results.board[i][j] !== "?") {
                         // fill in value for that tile
-                        console.log('I found a value');
-                        console.log(i, j);
-                        console.log(results.board[i][j]);
+                        let theTile = document.getElementById("("+ i +", " + j + ")");
+                        if (theTile.hasChildNodes()) {
+                            break;
+                        }
+                        let content = document.createTextNode(results.board[i][j]);
+                        theTile.appendChild(content);
+                        theTile.className += " revealed";
                     }
                 }
             }
-
-            // // For each tile in results.board that does not have a '?' value...
-            // // change the tile to its corresponding value (5,4,3,2,1,blank)
-            // let coords = "(0, 0)";
-            // let value = "?";
-            // let theDiv = document.getElementById(coords);
-            // let content = document.createTextNode(value);
-            // theDiv.appendChild(content);
         }
         else {
             // reveal mines with current board
