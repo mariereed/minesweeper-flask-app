@@ -47,20 +47,13 @@ def revealTile():
     current_board = session.get('current_board')
 
     x, y = eval(request.form.get('coordinates'))
-    print x, y
-
     was_revealed, board = minesweeper.revealClick(x, y, full_board, current_board)
 
-    print minesweeper.tabulateMatrix(board)
     session['current_board'] = board
 
-    # determine if game is won
-
     if was_revealed:
-        print 'Revealing a tile'
-        return jsonify({'confirm': True, 'board': board, 'gameOver': minesweeper.gameOver(current_board, full_board)})
+        return jsonify({'confirm': True, 'board': board, 'gameOver': minesweeper.gameOver(board, full_board)})
     else:
-        print 'Hit a mine'
         return jsonify({'confirm': False, 'board': board})
 
 
