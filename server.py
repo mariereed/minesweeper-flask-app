@@ -53,11 +53,12 @@ def revealTile():
 
     print minesweeper.tabulateMatrix(board)
     session['current_board'] = board
-    print minesweeper.tabulateMatrix(session.get('current_board'))
+
+    # determine if game is won
 
     if was_revealed:
         print 'Revealing a tile'
-        return jsonify({'confirm': True, 'board': board})
+        return jsonify({'confirm': True, 'board': board, 'gameOver': minesweeper.gameOver(current_board, full_board)})
     else:
         print 'Hit a mine'
         return jsonify({'confirm': False, 'board': board})

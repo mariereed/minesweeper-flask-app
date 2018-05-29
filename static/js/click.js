@@ -23,6 +23,9 @@ $('document').ready(function() {
                     }
                 }
             }
+            if (results.gameOver === true) {
+                alert('You Won!');
+            }
         }
         else {
             console.log('In Reveal Tile Function (False)');

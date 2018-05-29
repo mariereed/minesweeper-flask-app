@@ -126,7 +126,7 @@ def revealNeighbors(numberMatrix, blankMatrix, x, y):
 
 def revealWinningBoard(matrix):
     withBlanksBoard = [[' ' if x == 0 else x for x in y] for y in matrix]
-    withFlagsBoard = [['F' if x == '!' else x for x in y] for y in withBlanksBoard]
+    withFlagsBoard = [['?' if x == '!' else x for x in y] for y in withBlanksBoard]
 
     return withFlagsBoard
 
@@ -138,6 +138,16 @@ def revealEndBoard(numberMatrix, currentBoard):
             if numberMatrix[i][j] == '!':
                 copyCurrentBoard[i][j] = '*'
     return copyCurrentBoard
+
+
+def gameOver(currentBoard, numberMatrix):
+    winningBoard = revealWinningBoard(numberMatrix)
+
+    for i in range(len(numberMatrix)):
+        for j in range(len(numberMatrix[i])):
+            if winningBoard[i][j] != currentBoard[i][j]:
+                return False
+    return True
 
 
 def playGame(height, width, mineCount):
