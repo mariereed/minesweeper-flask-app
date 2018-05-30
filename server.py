@@ -23,11 +23,10 @@ def homepage():
 
     height    = 8
     width     = 8
-    mineCount = 10
+    mine_count = 10
+    session['mine_count'] = mine_count
 
-    flagCount = 0
-
-    true_false_matrix      = minesweeper.createBeginnerTrueFalseMatrix(height, width, mineCount)
+    true_false_matrix      = minesweeper.createBeginnerTrueFalseMatrix(height, width, mine_count)
     number_and_mine_matrix = minesweeper.numberFill(true_false_matrix)
     blank_matrix           = minesweeper.createNewBlankMatrix(true_false_matrix)
 
@@ -36,7 +35,7 @@ def homepage():
     session['number_and_mine_board'] = number_and_mine_matrix
     session['current_board'] = blank_matrix
 
-    return render_template('base.html', tile_grid=true_false_matrix)
+    return render_template('base.html', tile_grid=true_false_matrix, mine_count=mine_count)
 
 
 @app.route('/reveal', methods=["POST"])
@@ -60,7 +59,6 @@ def revealTile():
 @app.route('/flag', methods=["POST"])
 def flagTile():
     """ Reveal the selected tile. """
-
     x, y = eval(request.form.get('coordinates'))
 
     return jsonify({'confirm': True, 'x': x, 'y': y})
