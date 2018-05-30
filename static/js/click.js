@@ -20,21 +20,21 @@ $('document').ready(function() {
     function endGame(content) {
         let messageDiv = document.getElementById("row2");
         messageDiv.appendChild(content);
+        // t is a global variable from timer.js
         clearTimeout(t);
         setTimeout(function() {
             window.location = '/';}, 3000);
     }
 
     function revealTile(results) {
+        revealNewTiles(results.board);
         if (results.confirm === true) {
-            revealNewTiles(results.board);
             if (results.gameOver === true) {
                 let content = document.createTextNode('You Won!');
                 endGame(content);
             }
         }
         else {
-            revealNewTiles(results.board);
             let content = document.createTextNode('Game Over!');
             endGame(content);
         }
