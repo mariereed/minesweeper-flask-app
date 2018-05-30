@@ -16,23 +16,27 @@ $('document').ready(function() {
             }
         }
     }
-    function revealTile(results) {
+
+    function endGame(content) {
         let messageDiv = document.getElementById("row2");
+        messageDiv.appendChild(content);
+        clearTimeout(t);
+        setTimeout(function() {
+            window.location = '/';}, 3000);
+    }
+
+    function revealTile(results) {
         if (results.confirm === true) {
             revealNewTiles(results.board);
             if (results.gameOver === true) {
                 let content = document.createTextNode('You Won!');
-                messageDiv.appendChild(content);
-                setTimeout(function() {
-                    window.location = '/';}, 3000);
+                endGame(content);
             }
         }
         else {
             revealNewTiles(results.board);
             let content = document.createTextNode('Game Over!');
-            messageDiv.appendChild(content);
-            setTimeout(function() {
-                window.location = '/';}, 3000);
+            endGame(content);
         }
     }
 
