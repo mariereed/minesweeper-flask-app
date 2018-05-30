@@ -9,9 +9,15 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
       <style>
       body {
+        margin: 20px;
+      }
+      #row1 {
         display: flex;
         justify-content: space-between;
-        margin: 20px;
+      }
+      #row2 {
+        text-align: center;
+        font-size: 50px;
       }
       #game {
         background-color: rgba(0, 255, 0, 0.1);
@@ -59,34 +65,38 @@
   </head>
   <body>
     <script src="/static/js/click.js"></script>
-    <div id="instructions">
-      <h4>To Play:</h4>
-      <p>Click to reveal a tile</p>
-      <p>Right click to place or remove a flag</p>
-      <h4>To Win:</h4>
-      <p>Reveal all non-mine tiles</p>
-    </div>
-    <div id="game">
-      <div id="heading">
-        <h3 id="title">Minesweeper</h3>
+    <div id="row1">
+      <div id="instructions">
+        <h4>To Play:</h4>
+        <p>Click to reveal a tile</p>
+        <p>Right click to place or remove a flag</p>
+        <h4>To Win:</h4>
+        <p>Reveal all non-mine tiles</p>
       </div>
 
-      <div id="board">
-        {% for row in range(tile_grid|length) %}
-          {% for column in range(tile_grid[row]|length) %}
-            <div class="tile" id="{{row, column}}".format></div>
+      <div id="game">
+        <div id="heading">
+          <h3 id="title">Minesweeper</h3>
+        </div>
+        <div id="board">
+          {% for row in range(tile_grid|length) %}
+            {% for column in range(tile_grid[row]|length) %}
+              <div class="tile" id="{{row, column}}".format></div>
+            {% endfor %}
+            <div class="clear"></div>
           {% endfor %}
-          <div class="clear"></div>
-        {% endfor %}
+        </div>
+      </div>
 
-
+      <div id="stats">
+        <h4>Timer:</h4>
+        <p></p>
+        <h4>Mines Remaining:</h4>
+        <p id='mines'>{{mine_count}}</p>
+        <p></p>
       </div>
     </div>
-    <div id="stats">
-      <h4>Timer:</h4>
-      <p></p>
-      <h4>Mines Remaining:</h4>
-      <p></p>
+    <div id="row2">
     </div>
   </body>
 </html>

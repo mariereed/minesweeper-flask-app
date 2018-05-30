@@ -17,17 +17,22 @@ $('document').ready(function() {
         }
     }
     function revealTile(results) {
+        let messageDiv = document.getElementById("row2");
         if (results.confirm === true) {
             revealNewTiles(results.board);
             if (results.gameOver === true) {
-                alert('You Won!');
-                window.location = '/';
+                let content = document.createTextNode('You Won!');
+                messageDiv.appendChild(content);
+                setTimeout(function() {
+                    window.location = '/';}, 3000);
             }
         }
         else {
             revealNewTiles(results.board);
-            alert('You hit a mine! Game Over.');
-            // window.location = '/';
+            let content = document.createTextNode('Game Over!');
+            messageDiv.appendChild(content);
+            setTimeout(function() {
+                window.location = '/';}, 3000);
         }
     }
 
@@ -35,11 +40,16 @@ $('document').ready(function() {
         if (results.confirm === true) {
             let theTile = document.getElementById("("+ results.x +", " + results.y + ")");
             let classes = theTile.classList;
+
+            let mineCount = document.getElementById('mines');
+
             if (classes.contains('flagged')) {
                 classes.remove('flagged');
+                mineCount.innerHTML= eval(mineCount.innerHTML) +1;
             }
             else {
                 classes.add('flagged');
+                mineCount.innerHTML= eval(mineCount.innerHTML) -1;
             }
         }
     }
