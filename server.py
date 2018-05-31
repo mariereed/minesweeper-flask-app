@@ -20,11 +20,9 @@ app.jinja_env.undefined = StrictUndefined
 @app.route('/')
 def homepage():
     """ Application page."""
-
-    height    = 8
-    width     = 8
-    mine_count = 10
-    session['mine_count'] = mine_count
+    height = session.get('height') or 8
+    width = session.get('width') or 8
+    mine_count = session.get('mine_count') or 10
 
     true_false_matrix      = minesweeper.createBeginnerTrueFalseMatrix(height, width, mine_count)
     number_and_mine_matrix = minesweeper.numberFill(true_false_matrix)
@@ -62,6 +60,33 @@ def flagTile():
     x, y = eval(request.form.get('coordinates'))
 
     return jsonify({'confirm': True, 'x': x, 'y': y})
+
+@app.route('/mode', methods=["POST"])
+def changeMode():
+    """ Reveal the selected tile. """
+    mode = request.form.get('mode')
+
+    if mode == 'beginner':
+        print('begineer')
+        height     = 8
+        width      = 8
+        mine_count = 10
+    elif mode == 'intermediate':
+        print('inter')
+        height     = 16
+        width      = 16
+        mine_count = 40
+    elif mode == 'advanced':
+        print('advanced')
+        height     = 16
+        width      = 30
+        mine_count = 99
+
+    session['height'] = height
+    session['width']  = width
+    session['mine_count'] = mine_count
+
+    return redirect('/')
 
 
 if __name__ == "__main__":

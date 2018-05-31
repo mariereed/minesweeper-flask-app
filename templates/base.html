@@ -66,11 +66,21 @@
         margin: 10px;
         font-size: 20px;
       }
+      #buttons {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px;
+      }
+      button {
+        border-radius: 5px;
+        border-color: black;
+      }
     </style>
   </head>
   <body>
     <script src="/static/js/timer.js"></script>
     <script src="/static/js/click.js"></script>
+    <script src="/static/js/mode.js"></script>
     <div id="row1">
       <div id="instructions">
         <h4>To Play:</h4>
@@ -99,7 +109,11 @@
         <p id='timer'>00:00:00</p>
         <h4>Mines Remaining:</h4>
         <p id='mines'>{{mine_count}}</p>
-        <p></p>
+        <div id='buttons'>
+          <button id="beginner">beginner</button>
+          <button id="intermediate">intermediate</button>
+          <button id="advanced">advanced</button>
+        </div>
       </div>
     </div>
     <div id="row2">
