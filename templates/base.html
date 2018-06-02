@@ -6,11 +6,11 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
       <style>
       body {
-        margin: 20px;
+        margin: 50px;
       }
       #row1 {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
       }
       #row2 {
         text-align: center;
@@ -20,8 +20,6 @@
         background-color: rgba(0, 255, 0, 0.1);
         border: 2px inset #666;
         display: inline-block;
-      }
-      #board {
       }
       #heading {
         border-bottom: 1px inset #666;
@@ -38,14 +36,6 @@
       }
       .clear {
         clear: both;
-      }
-      #row {
-      }
-      #stats {
-        background-color: rgba(0, 255, 0, 0.1);
-        border: 2px inset #666;
-        display: inline-block;
-        padding: 5px;
       }
       #instructions {
         background-color: rgba(0, 255, 0, 0.1);
@@ -66,6 +56,7 @@
       #buttons {
         display: flex;
         justify-content: space-between;
+        margin: 10px;
       }
       button {
         border-radius: 5px;
@@ -79,16 +70,26 @@
     <script src="/static/js/mode.js"></script>
     <div id="row1">
       <div id="instructions">
-        <h4>To Play:</h4>
+        <h2>To Play:</h2>
         <p>Click to reveal a tile</p>
         <p>Right click to place or remove a flag</p>
-        <h4>To Win:</h4>
+        <h2>To Win:</h2>
         <p>Reveal all non-mine tiles</p>
+        <h2>Timer:</h2>
+        <p id='timer'>00:00:00</p>
+        <h2>Mines Remaining:</h2>
+        <p id='mines'>{{mine_count}}</p>
+        <h2>Mode:</h2>
+        <div id='buttons'>
+          <button id="beginner">beginner</button>
+          <button id="intermediate">intermediate</button>
+          <button id="advanced">advanced</button>
+        </div>
       </div>
 
       <div id="game">
         <div id="heading">
-          <h3 id="title">Minesweeper</h3>
+          <h1 id="title">Minesweeper</h1>
         </div>
         <div id="board">
           {% for row in range(tile_grid|length) %}
@@ -97,18 +98,6 @@
             {% endfor %}
             <div class="clear"></div>
           {% endfor %}
-        </div>
-      </div>
-
-      <div id="stats">
-        <h4>Timer:</h4>
-        <p id='timer'>00:00:00</p>
-        <h4>Mines Remaining:</h4>
-        <p id='mines'>{{mine_count}}</p>
-        <div id='buttons'>
-          <button id="beginner">beginner</button>
-          <button id="intermediate">intermediate</button>
-          <button id="advanced">advanced</button>
         </div>
       </div>
     </div>
