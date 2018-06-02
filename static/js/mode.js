@@ -2,7 +2,6 @@
 
 $('document').ready(function() {
     function reloadIt(returned_stuff) {
-        console.log("returned_stuff", returned_stuff);
         document.location.reload();
     }
     let beginner = document.getElementById('beginner');

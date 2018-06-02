@@ -31,7 +31,6 @@ $('document').ready(function() {
             return;
         }
         board.classList.add('started');
-        console.log('timer started');
         timer();
     });
 
