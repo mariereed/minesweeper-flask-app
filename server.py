@@ -61,6 +61,7 @@ def flagTile():
 
     return jsonify({'confirm': True, 'x': x, 'y': y})
 
+
 @app.route('/mode', methods=["POST"])
 def changeMode():
     """ Reveal the selected tile. """
@@ -86,7 +87,7 @@ def changeMode():
     session['width']  = width
     session['mine_count'] = mine_count
 
-    return redirect('/')
+    return ''
 
 
 if __name__ == "__main__":
