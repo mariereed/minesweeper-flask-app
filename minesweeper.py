@@ -83,16 +83,10 @@ def createNewBlankMatrix(matrix):
     # TODO: Change this to appropriate visual
     return [['?' for x in y] for y in matrix]
 
+
 def tabulateMatrix(matrix):
     """ formats any matrix into uniform table """
     return tabulate(matrix, tablefmt="fancy_grid")
-
-
-def isNumber(input):
-    try:
-        return int(input) - 1
-    except ValueError:
-        return False
 
 
 def revealClick(x, y, numberMatrix, blankMatrix):
@@ -148,33 +142,3 @@ def gameOver(currentBoard, numberMatrix):
             if winningBoard[i][j] != currentBoard[i][j]:
                 return False
     return True
-
-
-def playGame(height, width, mineCount):
-    """ Game function sets up matrices, allows tile selection and flagging,
-    determines game over, suggests playing again """
-
-    preMatrix     = createBeginnerTrueFalseMatrix(height, width, mineCount)
-    numberMatrix  = numberFill(preMatrix)
-    blankMatrix   = createNewBlankMatrix(preMatrix)
-
-    gameRunning   = True
-    flagCount     = 0
-
-    while gameRunning:
-        wasRevealed = revealClick(numberMatrix, blankMatrix)
-        if wasRevealed:
-            # update the board
-            # update the flag count
-            if mineCount == flagCount:
-                if revealWinningBoard(numberMatrix) == blankMatrix:
-                    gameRunning = False
-                    # The game is won
-        else:
-            gameRunning = False
-            # The game is over because a mine is hit
-            # Reveal the end board: revealEndBoard(numberMatrix, blankMatrix)
-
-    doOver = raw_input('Play again? ').lower()
-    if doOver == 'yes' or doOver == 'y':
-        playGame(height, width, mineCount)
