@@ -1,5 +1,4 @@
 import random
-from tabulate import tabulate
 
 
 def createBeginnerTrueFalseMatrix(height, width, mineCount):
@@ -78,11 +77,6 @@ def createNewZeroMatrix(matrix):
 def createNewBlankMatrix(matrix):
     """ generates '?' matrix, this is the matrix visible to the user """
     return [['?' for x in y] for y in matrix]
-
-
-def tabulateMatrix(matrix):
-    """ formats any matrix into uniform table """
-    return tabulate(matrix, tablefmt="fancy_grid")
 
 
 def revealClick(x, y, answerMatrix, currentBoard):
