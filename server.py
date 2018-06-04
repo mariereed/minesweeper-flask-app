@@ -1,8 +1,6 @@
 
 from jinja2 import StrictUndefined
-from flask import Flask, render_template, redirect, request, flash, session, g, jsonify
-from flask_debugtoolbar import DebugToolbarExtension
-import os
+from flask import Flask, render_template, request, session, jsonify
 import minesweeper
 
 
@@ -24,9 +22,9 @@ def homepage():
     width = session.get('width') or 8
     mine_count = session.get('mine_count') or 10
 
-    true_false_matrix      = minesweeper.createBeginnerTrueFalseMatrix(height, width, mine_count)
-    number_and_mine_matrix = minesweeper.numberFill(true_false_matrix)
-    blank_matrix           = minesweeper.createNewBlankMatrix(true_false_matrix)
+    true_false_matrix      = minesweeper.create_true_false_matrix(height, width, mine_count)
+    number_and_mine_matrix = minesweeper.number_fill(true_false_matrix)
+    blank_matrix           = minesweeper.create_new_blank_matrix(true_false_matrix)
 
     session['number_and_mine_board'] = number_and_mine_matrix
     session['current_board'] = blank_matrix
@@ -42,12 +40,12 @@ def revealTile():
     current_board = session.get('current_board')
 
     x, y = eval(request.form.get('coordinates'))
-    was_revealed, board = minesweeper.revealClick(x, y, full_board, current_board)
+    was_revealed, board = minesweeper.reveal_click(x, y, full_board, current_board)
 
     session['current_board'] = board
 
     if was_revealed:
-        return jsonify({'confirm': True, 'board': board, 'gameOver': minesweeper.gameOver(board, full_board)})
+        return jsonify({'confirm': True, 'board': board, 'gameOver': minesweeper.game_over(board, full_board)})
     else:
         return jsonify({'confirm': False, 'board': board})
 
@@ -78,8 +76,8 @@ def changeMode():
         width      = 30
         mine_count = 99
 
-    session['height'] = height
-    session['width']  = width
+    session['height']     = height
+    session['width']      = width
     session['mine_count'] = mine_count
 
     return ''
@@ -88,8 +86,6 @@ def changeMode():
 if __name__ == "__main__":
     app.jinja_env.auto_reload = app.debug  # make sure templates, etc. are not cached in debug mode
 
-    app.debug = True
-    # Use the DebugToolbar
-    # DebugToolbarExtension(app)
+    # app.debug = True
 
     app.run(port=5000, host='0.0.0.0')
