@@ -8,4 +8,4 @@ Pip install -r requirements.txt
 
 ## Images
 
-![alt text](https://github.com/mariereed/minesweeper-flask-app/blob/master/static/img/?.png "Interface")
+![alt text](https://github.com/mariereed/minesweeper-flask-app/blob/master/static/img/Screenshot.png "Interface")
