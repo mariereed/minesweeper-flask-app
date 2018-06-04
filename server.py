@@ -28,8 +28,6 @@ def homepage():
     number_and_mine_matrix = minesweeper.numberFill(true_false_matrix)
     blank_matrix           = minesweeper.createNewBlankMatrix(true_false_matrix)
 
-    print minesweeper.tabulateMatrix(number_and_mine_matrix)
-
     session['number_and_mine_board'] = number_and_mine_matrix
     session['current_board'] = blank_matrix
 
@@ -68,17 +66,14 @@ def changeMode():
     mode = request.form.get('mode')
 
     if mode == 'beginner':
-        print('begineer')
         height     = 8
         width      = 8
         mine_count = 10
     elif mode == 'intermediate':
-        print('inter')
         height     = 16
         width      = 16
         mine_count = 40
     elif mode == 'advanced':
-        print('advanced')
         height     = 16
         width      = 30
         mine_count = 99
